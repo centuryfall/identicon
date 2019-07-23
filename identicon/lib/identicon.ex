@@ -2,6 +2,7 @@ defmodule Identicon do
   def main(input) do
     input
     |> make_hash
+    |> pick_color
   end
 
   @doc """
@@ -18,7 +19,9 @@ defmodule Identicon do
     %Identicon.Image{hex: hex}
   end
 
-  def color_values(hash) do
+  def pick_color(image) do
+
+
   end
 
   # If num % 2 == 0, color it. else, leave blank
