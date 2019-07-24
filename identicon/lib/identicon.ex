@@ -1,8 +1,10 @@
+
 defmodule Identicon do
   def main(input) do
     input
     |> make_hash
     |> pick_color
+    |> build_grid
   end
 
   @doc """
@@ -20,7 +22,13 @@ defmodule Identicon do
   end
 
   def pick_color(%Identicon.Image{hex: [r, g, b | _tail]} = image) do
-    %Identicon.Image{image | color: {r,g,b}}
+    %Identicon.Image{image | color: {r, g, b}}
+  end
+
+  def build_grid(%Identicon.Image{hex: hex} = image) do
+    hex
+    |> Enum.chunk(3)
+    #|> mirror_of_row
   end
 
   # If num % 2 == 0, fill it with color. else, leave blank
