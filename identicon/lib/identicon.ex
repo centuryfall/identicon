@@ -20,8 +20,9 @@ defmodule Identicon do
   end
 
   def pick_color(image) do
+    %Identicon.Image{hex: [r, g, b | _tail]} = image
 
-
+    [r, g, b]
   end
 
   # If num % 2 == 0, color it. else, leave blank
