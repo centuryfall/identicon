@@ -1,4 +1,3 @@
-
 defmodule Identicon do
   def main(input) do
     input
@@ -27,8 +26,13 @@ defmodule Identicon do
 
   def build_grid(%Identicon.Image{hex: hex} = image) do
     hex
-    |> Enum.chunk(3)
-    #|> mirror_of_row
+    |> Enum.chunk_every(3, 3, :discard)
+    |> mirror_of_row
+  end
+
+  def mirror_of_row(row) do
+    [first, second | _tail] = row
+    row ++ [second, first]
   end
 
   # If num % 2 == 0, fill it with color. else, leave blank
